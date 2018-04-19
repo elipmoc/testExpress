@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "module": "commonjs",
+        "sourceMap": false,
+        "declaration": true,
+        "outDir": "../../public/javascripts",
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "strictNullChecks": true,
+        "noImplicitReturns": true,
+        "noEmitOnError": true
+    },
+    "include": [
+        "../client"
+    ],
+    "exclude": []
+}

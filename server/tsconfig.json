@@ -4,7 +4,7 @@
         "module": "commonjs",
         "sourceMap": false,
         "declaration": true,
-        "outDir": "./server_dist",
+        "outDir": "../server_dist",
         "noImplicitAny": true,
         "noImplicitThis": true,
         "noUnusedLocals": false,
@@ -14,9 +14,9 @@
         "noEmitOnError": true
     },
     "include": [
-        "./"
+        "../server"
     ],
     "exclude": [
-        "./node_modules",
+        "../node_modules",
     ]
 }
