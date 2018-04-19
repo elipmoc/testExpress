@@ -3,3 +3,6 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  div 4+5= #{4+5}
+  include hoge.jade
+  script(src='./javascripts/hoge.js', charset='UTF-8')
