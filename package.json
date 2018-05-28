@@ -7,11 +7,13 @@
   },
   "dependencies": {
     "@types/express": "^4.11.1",
+    "connect": "^3.6.6",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
+    "method-override": "^2.3.10",
     "morgan": "~1.9.0",
     "ts-loader": "^4.2.0",
     "typescript": "^2.8.1",

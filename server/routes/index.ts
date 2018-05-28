@@ -3,7 +3,7 @@ var router = express.Router();
 import { Task } from "../task/task";
 import { Response, Request } from "express";
 
-const tasks: Task[] = new Array();
+let tasks: Task[] = new Array();
 let current_id: number = 0;
 
 /* GET home page. */
@@ -28,8 +28,17 @@ router.post('/task', function (req: Request, res: Response, next: any) {
   res.redirect('tasks');
 });
 
-router.delete('/task', function (req: any, res: any, next: any) {
-  res.render('new');
+router.delete('/task/:id', function (req: Request, res: Response, next: any) {
+  const id = req.params["id"];
+  tasks = tasks.filter(x => x.Id != id);
+  res.redirect('../tasks');
 });
+
+router.get('/task/:id', function (req: any, res: any, next: any) {
+  const id = req.params["id"];
+  const task = tasks.find(x => x.Id == id);
+  res.render('task', { task: task });
+});
+
 
 module.exports = router;
