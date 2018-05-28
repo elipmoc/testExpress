@@ -1,0 +1,13 @@
+extend layout
+block content
+    form(method="POST", target="task")
+        タスク名
+        input(type="text", name="task[name]" value="" class="form-control") 
+        br
+        見出し        
+        input(type="text", name="task[head]" value="" class="form-control")
+        br
+        説明
+        input(type="text", name="task[description]" value="" class="form-control")
+        br
+        input(type="submit", value="送信")

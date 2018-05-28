@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 import { Task } from "../task/task";
+import { Response, Request } from "express";
+
+const tasks: Task[] = new Array();
+let current_id: number = 0;
 
 /* GET home page. */
 router.get('/', function (req: any, res: any, next: any) {
@@ -8,7 +12,20 @@ router.get('/', function (req: any, res: any, next: any) {
 });
 
 router.get('/tasks', function (req: any, res: any, next: any) {
-  res.render('tasks', { tasks: [new Task("fuga", "poge", 114)] });
+  res.render('tasks', { tasks: tasks });
+});
+
+router.get('/task', function (req: any, res: any, next: any) {
+  res.render('new');
+});
+
+router.post('/task', function (req: Request, res: Response, next: any) {
+  const name = req.body["task[name]"];
+  const head = req.body["task[head]"];
+  const description = req.body["task[description]"];
+  tasks.push(new Task(name, head, current_id));
+  current_id++;
+  res.redirect('tasks');
 });
 
 
