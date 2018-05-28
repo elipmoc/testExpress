@@ -31,7 +31,7 @@ router.post('/task', function (req: Request, res: Response, next: any) {
 router.delete('/task/:id', function (req: Request, res: Response, next: any) {
   const id = req.params["id"];
   tasks = tasks.filter(x => x.Id != id);
-  res.redirect('../tasks');
+  res.redirect('/tasks');
 });
 
 router.get('/task/:id', function (req: any, res: any, next: any) {
@@ -40,5 +40,24 @@ router.get('/task/:id', function (req: any, res: any, next: any) {
   res.render('task', { task: task });
 });
 
+router.get('/task/edit/:id', function (req: any, res: any, next: any) {
+  const id = req.params["id"];
+  const task = tasks.find(x => x.Id == id);
+  res.render('edit', { task: task });
+});
+
+router.put('/task/:id', function (req: Request, res: Response, next: any) {
+  const id = req.params["id"];
+  const name = req.body["task[name]"];
+  const head = req.body["task[head]"];
+  const description = req.body["task[description]"];
+  let task = tasks.find(x => x.Id == id);
+  if (task) {
+    task.Head = head;
+    task.Name = name;
+    task.Description = description;
+  }
+  res.redirect(`/task/${id}`);
+});
 
 module.exports = router;

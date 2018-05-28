@@ -10,7 +10,11 @@ export class Task {
         this.id = id;
     }
     get Name() { return this.name; };
+    set Name(x) { this.name = x; };
     get Description() { return this.description; };
+    set Description(x) { this.description = x; };
     get Head() { return this.head; };
+    set Head(x) { this.head = x; };
     get Id() { return this.id; };
+    set Id(x) { this.id = x; };
 }
