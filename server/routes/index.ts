@@ -1,4 +1,4 @@
-var express = require('express');
+import * as express from 'express';
 var router = express.Router();
 import { Task } from "../task/task";
 import { Response, Request } from "express";
@@ -28,5 +28,8 @@ router.post('/task', function (req: Request, res: Response, next: any) {
   res.redirect('tasks');
 });
 
+router.delete('/task', function (req: any, res: any, next: any) {
+  res.render('new');
+});
 
 module.exports = router;
