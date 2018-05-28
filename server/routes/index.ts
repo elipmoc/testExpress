@@ -23,7 +23,7 @@ router.post('/task', function (req: Request, res: Response, next: any) {
   const name = req.body["task[name]"];
   const head = req.body["task[head]"];
   const description = req.body["task[description]"];
-  tasks.push(new Task(name, head, current_id));
+  tasks.push(new Task(name, head, description, current_id));
   current_id++;
   res.redirect('tasks');
 });
