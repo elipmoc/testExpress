@@ -3,7 +3,7 @@ block content
     <h2>タスク管理一覧</h2>
     for val in tasks
         a(href="task/#{val.Id}")
-            h3 #{`${val.Name}: ${val.Head}`}
+            h3 #{`#${val.Id} [${val.StateName}] ${val.Name}: ${val.Head}`}
         form(method="post", action="task/#{val.Id}?_method=DELETE")
             input(type="submit", value="削除")
         a(href="task/edit/#{val.Id}"): input(type="button" value="編集")

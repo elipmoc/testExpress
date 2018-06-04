@@ -10,4 +10,10 @@ block content
         説明
         input(type="text", name="task[description]" value="#{task.Description}" class="form-control")
         br
-        input(type="submit", value="更新")
+        状況
+        br
+        select(name="task[state]",class="form-control")
+            each publisher, i in states
+                option(value=i)  #{publisher}
+        br
+        input(type="submit", value="更新" class="btn btn-primary")
