@@ -1,22 +1,25 @@
 extend layout
 block content
     form(method="POST", action="/task/#{task.Id}?_method=PUT")
-        タスク名
-        input(type="text", name="task[name]" value="#{task.Name}" class="form-control") 
+        div(class="form-group")
+            label タスク名:
+            input(type="text", name="task[name]" value="#{task.Name}" class="form-control") 
+        div(class="form-group")
+            label 見出し:    
+            input(type="text", name="task[head]" value="#{task.Head}" class="form-control")
+        div(class="form-group")
+            label 説明:
+            textarea( name="task[description]" class="form-control") #{task.Description}
+        div(class="form-group")
+            label(for="comment") 状況:
+            br
+            div(class="col-xs-2")
+                select(name="task[state]" class="form-control")
+                    each publisher, i in states
+                        if i==task.State
+                            option(value=i selected)  #{publisher}
+                        else
+                            option(value=i)  #{publisher}
         br
-        見出し        
-        input(type="text", name="task[head]" value="#{task.Head}" class="form-control")
-        br
-        説明
-        input(type="text", name="task[description]" value="#{task.Description}" class="form-control")
-        br
-        状況
-        br
-        select(name="task[state]",class="form-control")
-            each publisher, i in states
-                if i==task.State
-                    option(value=i selected)  #{publisher}
-                else
-                    option(value=i)  #{publisher}
         br
         input(type="submit", value="更新" class="btn btn-primary")
