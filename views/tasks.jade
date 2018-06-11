@@ -1,10 +1,39 @@
 extend layout
 block content
-    <h2>タスク管理一覧</h2>
-    for val in tasks
-        a(href="task/#{val.Id}")
-            h3 #{`#${val.Id} [${val.StateName}] ${val.Name}: ${val.Head}`}
-        form(method="post", action="task/#{val.Id}?_method=DELETE")
-            input(type="submit", value="削除")
-        a(href="task/edit/#{val.Id}"): input(type="button" value="編集")
+    h2 タスク管理一覧
+
+    table(class="table")
+        thead
+            tr
+                th(scope="col")
+                    タスク番号
+                th(scope="col")
+                    タスク名
+                th(scope="col")
+                    見出し
+                th(scope="col")
+                    状態
+                th(scope="col")
+                    編集
+                th(scope="col")
+                    削除
+
+        tbody
+            for val in tasks
+                tr
+                    td
+                        a(href="task/#{val.Id}")
+                            h3 #{`#${val.Id}`}
+                    td
+                        h3 #{val.Name}
+
+                    td
+                        h3 #{val.Head}
+                    td
+                        h3 #{val.StateName}
+                    td
+                        a(href="task/edit/#{val.Id}"): input(type="button" value="編集" class="btn btn-primary")
+                    td
+                        form(method="post", action="task/#{val.Id}?_method=DELETE")
+                            input(type="submit", value="削除" class="btn btn-primary")
     a(href="task"): h3 新規タスク作成
