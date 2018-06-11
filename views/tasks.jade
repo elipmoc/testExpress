@@ -1,7 +1,17 @@
 extend layout
 block content
     h2 タスク管理一覧
-
+    br
+    総タスク数:#{tasks_count.total_tasks_num}　
+    新規タスク数:#{tasks_count.new_tasks_num}　
+    進行中タスク数:#{tasks_count.inprogress_tasks_num}　
+    解決タスク数:#{tasks_count.resolved_tasks_num}　
+    終了タスク数:#{tasks_count.finished_tasks_num}　
+    却下タスク数:#{tasks_count.dismissed_tasks_num}　
+    br
+    br
+    br
+    br
     table(class="table")
         thead
             tr

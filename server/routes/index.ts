@@ -4,6 +4,7 @@ import { Task, getStates } from "../task/task";
 import { Response, Request } from "express";
 import { BaseHistory } from '../task_history/base_history';
 import { CreateHistory, DeleteHistory, UpdateHistory } from '../task_history/histories';
+import { TaskCount } from '../task/task_count';
 
 let tasks: Task[] = new Array();
 let task_histories: BaseHistory[] = new Array();
@@ -15,7 +16,7 @@ router.get('/', function (req: any, res: any, next: any) {
 });
 
 router.get('/tasks', function (req: any, res: any, next: any) {
-  res.render('tasks', { tasks: tasks });
+  res.render('tasks', { tasks: tasks, tasks_count: new TaskCount(tasks) });
 });
 
 router.get('/task', function (req: any, res: any, next: any) {
@@ -69,7 +70,7 @@ router.put('/task/:id', function (req: Request, res: Response, next: any) {
     task.State = state;
     task.Description = description;
   }
-  res.redirect(`/task/${id}`);
+  res.redirect("/tasks");
 });
 
 router.get('/task_history', function (req: any, res: any, next: any) {
