@@ -1,0 +1,8 @@
+extend ../layout
+block content
+    h2 参加者新規作成
+    form(method="POST", target="member")
+        label 参加者名:
+        input(type="text", name="member[name]" value="" class="form-control") 
+        br
+        input(type="submit", value="送信", class="btn btn-primary")

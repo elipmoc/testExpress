@@ -1,0 +1,7 @@
+extend ../layout
+block content
+    h2 参加者一覧
+    ul(class="list-group")
+        for val in members
+            li(class="list-group-item") #{val.Name}
+    a(href="member"): h3 参加者新規作成

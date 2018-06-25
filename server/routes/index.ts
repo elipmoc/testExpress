@@ -5,10 +5,13 @@ import { Response, Request } from "express";
 import { BaseHistory } from '../task_history/base_history';
 import { CreateHistory, DeleteHistory, UpdateHistory } from '../task_history/histories';
 import { TaskCount } from '../task/task_count';
+import { Member } from '../member/member';
 
 let tasks: Task[] = new Array();
 let task_histories: BaseHistory[] = new Array();
 let current_id: number = 0;
+let current_member_id: number = 0;
+let members: Member[] = new Array();
 
 /* GET home page. */
 router.get('/', function (req: any, res: any, next: any) {
@@ -79,6 +82,20 @@ router.get('/task_history', function (req: any, res: any, next: any) {
 
 router.get('/howto', function (req: any, res: any, next: any) {
   res.render('howto');
+});
+
+router.get('/members', function (req: any, res: any, next: any) {
+  res.render('member/index', { members: members });
+});
+
+router.get('/member', function (req: any, res: any, next: any) {
+  res.render('member/new');
+});
+
+router.post('/member', function (req: Request, res: Response, next: any) {
+  const name = req.body["member[name]"];
+  members.push(new Member(current_member_id, name));
+  res.redirect('members');
 });
 
 module.exports = router;
