@@ -30,7 +30,8 @@ router.post('/task', function (req: Request, res: Response, next: any) {
   const name = req.body["task[name]"];
   const head = req.body["task[head]"];
   const description = req.body["task[description]"];
-  tasks.push(new Task(name, head, description, current_id, 'new'));
+  const memberId = req.body["task[memberId]"];
+  tasks.push(new Task(name, head, description, current_id, 'new', memberId));
 
   task_histories.push(new CreateHistory(name));
   current_id++;
@@ -50,7 +51,10 @@ router.delete('/task/:id', function (req: Request, res: Response, next: any) {
 router.get('/task/:id', function (req: any, res: any, next: any) {
   const id = req.params["id"];
   const task = tasks.find(x => x.Id == id);
-  res.render('task', { task: task });
+  if (task == undefined) {
+    return;
+  }
+  res.render('task', { task: task, member: members.find(m => m.Id == task.MemberId) });
 });
 
 router.get('/task/edit/:id', function (req: any, res: any, next: any) {
@@ -65,13 +69,15 @@ router.put('/task/:id', function (req: Request, res: Response, next: any) {
   const state = req.body["task[state]"];
   const head = req.body["task[head]"];
   const description = req.body["task[description]"];
+  const memberId = req.body["task[memberId]"];
   let task = tasks.find(x => x.Id == id);
   if (task) {
-    task_histories.push(new UpdateHistory(new Task(task.Name, task.Head, task.Description, task.Id, task.State), new Task(name, head, description, id, state)));
+    task_histories.push(new UpdateHistory(new Task(task.Name, task.Head, task.Description, task.Id, task.State, task.MemberId), new Task(name, head, description, id, state, memberId), members));
     task.Head = head;
     task.Name = name;
     task.State = state;
     task.Description = description;
+    task.MemberId = memberId;
   }
   res.redirect("/tasks");
 });
@@ -95,6 +101,7 @@ router.get('/member', function (req: any, res: any, next: any) {
 router.post('/member', function (req: Request, res: Response, next: any) {
   const name = req.body["member[name]"];
   members.push(new Member(current_member_id, name));
+  current_member_id++;
   res.redirect('members');
 });
 

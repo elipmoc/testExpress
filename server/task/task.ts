@@ -18,12 +18,14 @@ export class Task {
     private id: number;
     private description: string;
     private state: string;
-    constructor(name: string, head: string, description: string, id: number, state: string) {
+    private memberId: number | null;
+    constructor(name: string, head: string, description: string, id: number, state: string, memberId: number | null) {
         this.name = name;
         this.head = head;
         this.description = description;
         this.id = id;
         this.state = state;
+        this.memberId = memberId;
     }
     get Name() { return this.name; };
     set Name(x) { this.name = x; };
@@ -36,4 +38,6 @@ export class Task {
     get State() { return this.state; }
     get StateName() { return getStates()[this.state]; }
     set State(x) { this.state = x; }
+    get MemberId() { return this.memberId; }
+    set MemberId(x) { this.memberId = x; }
 }

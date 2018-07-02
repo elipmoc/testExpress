@@ -1,5 +1,6 @@
 import { BaseHistory } from "../task_history/base_history";
 import { Task } from "../task/task";
+import { Member } from "../member/member";
 
 export class CreateHistory extends BaseHistory {
     private task_name: string;
@@ -26,10 +27,12 @@ export class DeleteHistory extends BaseHistory {
 export class UpdateHistory extends BaseHistory {
     private before_task: Task;
     private after_task: Task;
-    constructor(before_task: Task, after_task: Task) {
+    private members: Member[];
+    constructor(before_task: Task, after_task: Task, members: Member[]) {
         super();
         this.before_task = before_task;
         this.after_task = after_task;
+        this.members = members;
     }
     show() {
         let str = "";
@@ -44,6 +47,11 @@ export class UpdateHistory extends BaseHistory {
         }
         if (this.before_task.State != this.after_task.State) {
             str += `{状況:${this.before_task.State}→${this.after_task.State}}`;
+        }
+        if (this.before_task.MemberId != this.after_task.MemberId) {
+            str +=
+                `{担当者:${this.members.find(m => m.Id == this.before_task.MemberId)!.Id}
+                →${this.members.find(m => m.Id == this.after_task.MemberId)!.Id}}`;
         }
         return `${str}に更新`;
     }

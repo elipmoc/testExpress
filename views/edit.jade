@@ -26,8 +26,11 @@ block content
             br
             div(class="col-xs-12")
                 select(name="task[memberId]" class="form-control")
-                    each member, i in members
-                            option(value=member.Id)  #{member.Name}
+                    each member in members
+                            if member.Id==task.MemberId
+                                option(value=member.Id selected)  #{member.Name}
+                            else
+                                option(value=member.Id)  #{member.Name}
         br
         br
         input(type="submit", value="更新" class="btn btn-primary")
