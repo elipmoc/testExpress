@@ -50,8 +50,8 @@ export class UpdateHistory extends BaseHistory {
         }
         if (this.before_task.MemberId != this.after_task.MemberId) {
             str +=
-                `{担当者:${this.members.find(m => m.Id == this.before_task.MemberId)!.Id}
-                →${this.members.find(m => m.Id == this.after_task.MemberId)!.Id}}`;
+                `{担当者:${this.members.find(m => m.Id == this.before_task.MemberId)!.Name}
+                →${this.members.find(m => m.Id == this.after_task.MemberId)!.Name}}`;
         }
         return `${str}に更新`;
     }
