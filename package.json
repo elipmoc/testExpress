@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./server_dist/bin/www.js",
-    "build": "webpack && tsc -p server",
+    "build": "webpack && tsc -p server && npm start",
     "postinstall": "webpack && tsc -p server"
   },
   "dependencies": {
