@@ -26,11 +26,13 @@ body
      <span class="icon-bar"></span>
     <a class="navbar-brand" href="/">タスク管理ツール</a>
    div(id="navbar" class="navbar-collapse collapse")
-    <a class="dropdown-item" href="/tasks">タスク管理一覧</a>
-    <br>
-    <a class="dropdown-item" href="/task_history">タスク管理履歴</a>
-    <br>
-    <a class="dropdown-item" href="/members">参加者一覧</a>
+    ul(class="navbar-nav mr-auto")
+     li(class="nav-item active")
+      <h3><a class="dropdown-item" href="/tasks">タスク管理一覧　</a></h3>
+     li(class="nav-item")
+      <h3><a class="dropdown-item" href="/task_history">タスク管理履歴　</a></h3>
+     li(class="nav-item")
+      <h3><a class="dropdown-item" href="/members">参加者一覧　</a></h3>
     <!--/.navbar-collapse -->
 
  <!-- Main jumbotron for a primary marketing message or call to action -->
