@@ -10,4 +10,13 @@ block content
         label 説明:
         textarea(name="task[description]" value="" class="form-control")
         br
+        div(class="form-group")
+            label(for="comment") 担当者:
+            br
+            div(class="col-xs-12")
+                select(name="task[memberId]" class="form-control")
+                    each member, i in members
+                            option(value=member.Id)  #{member.Name}
+        br
+        br
         input(type="submit", value="送信", class="btn btn-primary")

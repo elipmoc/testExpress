@@ -23,7 +23,7 @@ router.get('/tasks', function (req: any, res: any, next: any) {
 });
 
 router.get('/task', function (req: any, res: any, next: any) {
-  res.render('new');
+  res.render('new', { members: members });
 });
 
 router.post('/task', function (req: Request, res: Response, next: any) {
@@ -56,7 +56,7 @@ router.get('/task/:id', function (req: any, res: any, next: any) {
 router.get('/task/edit/:id', function (req: any, res: any, next: any) {
   const id = req.params["id"];
   const task = tasks.find(x => x.Id == id);
-  res.render('edit', { task: task, states: getStates() });
+  res.render('edit', { task: task, states: getStates(), members: members });
 });
 
 router.put('/task/:id', function (req: Request, res: Response, next: any) {

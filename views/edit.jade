@@ -21,5 +21,13 @@ block content
                         else
                             option(value=i)  #{publisher}
         br
+        div(class="form-group")
+            label(for="comment") 担当者:
+            br
+            div(class="col-xs-12")
+                select(name="task[memberId]" class="form-control")
+                    each member, i in members
+                            option(value=member.Id)  #{member.Name}
+        br
         br
         input(type="submit", value="更新" class="btn btn-primary")
