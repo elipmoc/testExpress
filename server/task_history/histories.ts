@@ -49,9 +49,11 @@ export class UpdateHistory extends BaseHistory {
             str += `{状況:${this.before_task.State}→${this.after_task.State}}`;
         }
         if (this.before_task.MemberId != this.after_task.MemberId) {
+            let member_b = this.members.find(m => m.Id == this.before_task.MemberId);
+            let member_a = this.members.find(m => m.Id == this.after_task.MemberId);
             str +=
-                `{担当者:${this.members.find(m => m.Id == this.before_task.MemberId)!.Name}
-                →${this.members.find(m => m.Id == this.after_task.MemberId)!.Name}}`;
+                `{担当者:${member_b != undefined ? member_b.Name : ""}
+                →${member_a != undefined ? member_a.Name : ""}`;
         }
         return `${str}に更新`;
     }
