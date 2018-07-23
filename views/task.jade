@@ -5,4 +5,4 @@ block content
     h2 見出し：　#{task.Head}
     h2 説明：　#{task.Description}
     h2 状況:  #{task.StateName}
-    h2 担当者:  #{member.Name}
+    h2 担当者:  #{member.Name? member.Name: ""}
